@@ -1,0 +1,8 @@
+Reading rv32i_jtag.hex
+rv32i_jtag.hex loaded into memory
+Memory 5 bytes = 0x6f 0x00 0x00 0x0b 0x13
+VCD info: dumpfile rv32i_jtag.vcd opened for output.
+Management SoC has configured the GPIOs. Starting JTAG Test...
+Read IDCODE: 0x00000001
+Test Failed! Expected 0x10000001
+rv32i_jtag_tb.v:141: $finish called at 753762500 (1ps)

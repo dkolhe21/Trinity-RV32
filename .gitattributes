@@ -1,0 +1,7 @@
+*.gds binary
+*.gds.gz binary
+*.lef binary
+*.def binary
+*.vcd binary
+*.zip binary
+*.tar.gz binary

@@ -1,0 +1,86 @@
+nohup: ignoring input
+Makefile:54: warning: undefined variable 'MCW_ROOT'
+Assuming PDK is already enabled via custom path.
+# user_project_wrapper
+mkdir -p ./user_project_wrapper/runs/26_02_23_16_48 
+rm -rf ./user_project_wrapper/runs/user_project_wrapper
+ln -s $(realpath ./user_project_wrapper/runs/26_02_23_16_48) ./user_project_wrapper/runs/user_project_wrapper
+docker run --rm -u $(id -u $USER):$(id -g $USER) -v $(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..):$(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..) -v /run/media/durgesh/Code/vlsi_tools/pdks:/run/media/durgesh/Code/vlsi_tools/pdks -v /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel:/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -v /home/durgesh/.ipm:/home/durgesh/.ipm -v /run/media/durgesh/Code/vlsi_tools/OpenLane:/openlane -e PDK_ROOT=/run/media/durgesh/Code/vlsi_tools/pdks -e PDK=sky130A -e MISMATCHES_OK=1 -e CARAVEL_ROOT=/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -e OPENLANE_RUN_TAG=26_02_23_16_48  \
+	efabless/openlane:2023.07.19-1 sh -c "flow.tcl -design $(realpath ./user_project_wrapper) -save_path $(realpath ..) -save -tag 26_02_23_16_48 -overwrite -ignore_mismatches"
+OpenLane v1.0.2 (30ee1388932eb55a89ad84ee43997bfe3a386421)
+(with mounted scripts from ff5509f65b17bfa4068d5336495ab1718987ff69)
+All rights reserved. (c) 2020-2025 Efabless Corporation and contributors.
+Available under the Apache License, version 2.0. See the LICENSE file for more details.
+
+[INFO]: Using configuration in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/config.json'...
+[INFO]: PDK Root: /run/media/durgesh/Code/vlsi_tools/pdks
+[INFO]: Process Design Kit: sky130A
+[INFO]: Standard Cell Library: sky130_fd_sc_hd
+[INFO]: Optimization Standard Cell Library: sky130_fd_sc_hd
+[INFO]: Run Directory: /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48
+[INFO]: Saving runtime environment...
+[INFO]: Preparing LEF files for the nom corner...
+[INFO]: Preparing LEF files for the min corner...
+[INFO]: Preparing LEF files for the max corner...
+[STEP 1]
+[INFO]: Running Synthesis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/synthesis/1-synthesis.log)...
+[STEP 2]
+[INFO]: Running Single-Corner Static Timing Analysis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/synthesis/2-sta.log)...
+[INFO]: Creating a netlist with power/ground pins.
+[STEP 3]
+[INFO]: Running Initial Floorplanning (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/floorplan/3-initial_fp.log)...
+[INFO]: Floorplanned with width 2908.58 and height 3497.92.
+[STEP 4]
+[INFO]: Running IO Placement...
+[INFO]: Applying DEF template...
+[STEP 5]
+[INFO]: Performing Manual Macro Placement (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/placement/5-macro_placement.log)...
+[INFO]: Power planning with power {vccd1 vccd2 vdda1 vdda2} and ground {vssd1 vssd2 vssa1 vssa2}...
+[STEP 6]
+[INFO]: Generating PDN (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/floorplan/6-pdn.log)...
+[STEP 7]
+[INFO]: Performing Random Global Placement (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/placement/7-global.log)...
+[INFO]: Skipping Placement Resizer Design Optimizations.
+[STEP 8]
+[INFO]: Running Detailed Placement (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/placement/8-detailed.log)...
+[STEP 9]
+[INFO]: Running Single-Corner Static Timing Analysis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/placement/9-dpl_sta.log)...
+[INFO]: Skipping Placement Resizer Timing Optimizations.
+[INFO]: Skipping Global Routing Resizer Design Optimizations.
+[INFO]: Skipping Global Routing Resizer Timing Optimizations.
+[STEP 10]
+[INFO]: Running Global Routing (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/routing/10-global.log)...
+[STEP 11]
+[INFO]: Writing Verilog (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/routing/10-global_write_netlist.log)...
+[STEP 12]
+[INFO]: Running Single-Corner Static Timing Analysis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/routing/12-grt_sta.log)...
+[STEP 13]
+[INFO]: Running Detailed Routing (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/logs/routing/13-detailed.log)...
+[ERROR]: There are violations in the design after detailed routing.
+[ERROR]: Total Number of violations is 1
+[ERROR]: Step 13 (routing) failed with error:
+-code 1 -level 0 -errorcode NONE -errorinfo {
+    while executing
+"throw_error"
+    (procedure "quit_on_tr_drc" line 7)
+    invoked from within
+"quit_on_tr_drc"
+    (procedure "detailed_routing_tritonroute" line 19)
+    invoked from within
+"detailed_routing_tritonroute {*}$args"
+    (procedure "detailed_routing" line 2)
+    invoked from within
+"detailed_routing"
+    (procedure "run_routing" line 32)
+    invoked from within
+"run_routing"
+    (procedure "run_routing_step" line 7)
+    invoked from within
+"run_routing_step"} -errorline 1
+[INFO]: Saving current set of views in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/results/final'...
+[INFO]: Generating final set of reports...
+[INFO]: Created manufacturability report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/reports/manufacturability.rpt'.
+[INFO]: Created metrics report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/user_project_wrapper/runs/26_02_23_16_48/reports/metrics.csv'.
+[INFO]: Saving runtime environment...
+[ERROR]: Flow failed.
+make: *** [Makefile:80: user_project_wrapper] Error 255

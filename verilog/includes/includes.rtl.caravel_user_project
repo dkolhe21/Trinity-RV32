@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: 2020 Efabless Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# SPDX-License-Identifier: Apache-2.0
+
+# Caravel user project includes — RV32I CPU
+-v $(USER_PROJECT_VERILOG)/rtl/defines_riscv.v
+-v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v
+
+-v $(USER_PROJECT_VERILOG)/rtl/rv32i_top.v
+-v $(USER_PROJECT_VERILOG)/rtl/rv32_core.v
+-v $(USER_PROJECT_VERILOG)/rtl/if_stage.v
+-v $(USER_PROJECT_VERILOG)/rtl/idex_stage.v
+-v $(USER_PROJECT_VERILOG)/rtl/memwb_stage.v
+-v $(USER_PROJECT_VERILOG)/rtl/reg_file.v
+-v $(USER_PROJECT_VERILOG)/rtl/alu.v
+-v $(USER_PROJECT_VERILOG)/rtl/control.v
+-v $(USER_PROJECT_VERILOG)/rtl/imem_wrapper.v
+-v $(USER_PROJECT_VERILOG)/rtl/dmem_wrapper.v
+-v $(USER_PROJECT_VERILOG)/rtl/jtag_tap.v
+-v $(USER_PROJECT_VERILOG)/rtl/debug_module.v
+-v $(USER_PROJECT_VERILOG)/rtl/bist_ctrl.v

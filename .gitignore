@@ -1,0 +1,24 @@
+/.idea/
+/precheck_results/
+*/tmp
+*/*/tmp
+*.hex*
+*.lst
+*.vcd
+*.gtkw
+/env
+/venv
+/caravel
+/dependencies
+/mgmt_core_wrapper
+/logs
+
+# Private/Internal files
+docs/walkthrough.md
+docs/interview_qa.md
+docs/errors_and_resolutions.md
+*.md.backup
+../walkthrough.md
+
+# Hardware tracking rules
+*.gds

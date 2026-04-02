@@ -1,0 +1,43 @@
+nohup: ignoring input
+Makefile:54: warning: undefined variable 'MCW_ROOT'
+Assuming PDK is already enabled via custom path.
+# rv32i_top
+mkdir -p ./rv32i_top/runs/26_02_23_15_21 
+rm -rf ./rv32i_top/runs/rv32i_top
+ln -s $(realpath ./rv32i_top/runs/26_02_23_15_21) ./rv32i_top/runs/rv32i_top
+docker run --rm -u $(id -u $USER):$(id -g $USER) -v $(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..):$(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..) -v /run/media/durgesh/Code/vlsi_tools/pdks:/run/media/durgesh/Code/vlsi_tools/pdks -v /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel:/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -v /home/durgesh/.ipm:/home/durgesh/.ipm -v /run/media/durgesh/Code/vlsi_tools/OpenLane:/openlane -e PDK_ROOT=/run/media/durgesh/Code/vlsi_tools/pdks -e PDK=sky130A -e MISMATCHES_OK=1 -e CARAVEL_ROOT=/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -e OPENLANE_RUN_TAG=26_02_23_15_21  \
+	efabless/openlane:2023.07.19-1 sh -c "flow.tcl -design $(realpath ./rv32i_top) -save_path $(realpath ..) -save -tag 26_02_23_15_21 -overwrite -ignore_mismatches"
+OpenLane v1.0.2 (30ee1388932eb55a89ad84ee43997bfe3a386421)
+(with mounted scripts from ff5509f65b17bfa4068d5336495ab1718987ff69)
+All rights reserved. (c) 2020-2025 Efabless Corporation and contributors.
+Available under the Apache License, version 2.0. See the LICENSE file for more details.
+
+[INFO]: Using configuration in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/config.json'...
+[INFO]: PDK Root: /run/media/durgesh/Code/vlsi_tools/pdks
+[INFO]: Process Design Kit: sky130A
+[INFO]: Standard Cell Library: sky130_fd_sc_hd
+[INFO]: Optimization Standard Cell Library: sky130_fd_sc_hd
+[INFO]: Run Directory: /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_15_21
+[INFO]: Saving runtime environment...
+[INFO]: Preparing LEF files for the nom corner...
+[INFO]: Preparing LEF files for the min corner...
+[INFO]: Preparing LEF files for the max corner...
+[INFO]: Running linter (Verilator) (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_15_21/logs/synthesis/linter.log)...
+[ERROR]: Timing constructs found in the RTL. Please remove them or wrap them around an ifdef. It heavily unrecommended to rely on timing constructs for synthesis.
+[ERROR]: Step 0 (verilator_lint_check) failed with error:
+-code 1 -level 0 -errorcode NONE -errorinfo {
+    while executing
+"throw_error"
+    (procedure "run_verilator" line 50)
+    invoked from within
+"run_verilator"
+    (procedure "run_verilator_step" line 3)
+    invoked from within
+"run_verilator_step"} -errorline 1
+[INFO]: Saving current set of views in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_15_21/results/final'...
+[INFO]: Generating final set of reports...
+[INFO]: Created manufacturability report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_15_21/reports/manufacturability.rpt'.
+[INFO]: Created metrics report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_15_21/reports/metrics.csv'.
+[INFO]: Saving runtime environment...
+[ERROR]: Flow failed.
+make: *** [Makefile:80: rv32i_top] Error 255

@@ -1,0 +1,167 @@
+#-----------------------------------------------------------------------------
+# Makefile: RISC-V RV32I CPU Test Suite
+#
+# Targets:
+#   make unit         — Run all unit testbenches
+#   make integration  — Run top-level smoke test
+#   make compliance   — Compile & run riscv-tests rv32ui suite
+#   make all          — Everything
+#   make clean        — Remove generated files
+#-----------------------------------------------------------------------------
+
+RTL_DIR     := ../../verilog/rtl
+UNIT_DIR    := unit
+INT_DIR     := integration
+COMP_DIR    := compliance
+
+# RTL source files
+RTL_DEFINES := $(RTL_DIR)/defines_riscv.v
+RTL_CORE    := $(RTL_DIR)/rv32_core.v \
+               $(RTL_DIR)/if_stage.v \
+               $(RTL_DIR)/idex_stage.v \
+               $(RTL_DIR)/memwb_stage.v \
+               $(RTL_DIR)/reg_file.v \
+               $(RTL_DIR)/alu.v \
+               $(RTL_DIR)/control.v
+RTL_MEM     := $(RTL_DIR)/imem_wrapper.v $(RTL_DIR)/dmem_wrapper.v
+RTL_DBG     := $(RTL_DIR)/jtag_tap.v $(RTL_DIR)/debug_module.v $(RTL_DIR)/bist_ctrl.v
+
+IVERILOG    := iverilog
+VVP         := vvp
+IV_FLAGS    := -Wall -g2012 -I$(RTL_DIR)
+
+# RISC-V toolchain
+RISCV_PREFIX := riscv64-elf-
+RISCV_GCC    := $(RISCV_PREFIX)gcc
+RISCV_OBJCOPY:= $(RISCV_PREFIX)objcopy
+RISCV_OBJDUMP:= $(RISCV_PREFIX)objdump
+RISCV_ARCH   := rv32i
+RISCV_ABI    := ilp32
+
+.PHONY: all unit integration compliance clean
+
+all: unit integration
+
+#=============================================================================
+# Unit Tests
+#=============================================================================
+UNIT_TBS := tb_alu tb_control tb_reg_file tb_jtag_tap tb_bist_ctrl
+
+unit: $(addprefix unit_,$(UNIT_TBS))
+	@echo ""
+	@echo "============================================"
+	@echo " All unit tests complete"
+	@echo "============================================"
+
+unit_tb_alu:
+	@echo "--- tb_alu ---"
+	$(IVERILOG) $(IV_FLAGS) -o $(UNIT_DIR)/tb_alu.vvp \
+		$(RTL_DEFINES) $(RTL_DIR)/alu.v $(UNIT_DIR)/tb_alu.v
+	cd $(UNIT_DIR) && $(VVP) tb_alu.vvp
+
+unit_tb_control:
+	@echo "--- tb_control ---"
+	$(IVERILOG) $(IV_FLAGS) -o $(UNIT_DIR)/tb_control.vvp \
+		$(RTL_DEFINES) $(RTL_DIR)/control.v $(UNIT_DIR)/tb_control.v
+	cd $(UNIT_DIR) && $(VVP) tb_control.vvp
+
+unit_tb_reg_file:
+	@echo "--- tb_reg_file ---"
+	$(IVERILOG) $(IV_FLAGS) -o $(UNIT_DIR)/tb_reg_file.vvp \
+		$(RTL_DIR)/reg_file.v $(UNIT_DIR)/tb_reg_file.v
+	cd $(UNIT_DIR) && $(VVP) tb_reg_file.vvp
+
+unit_tb_jtag_tap:
+	@echo "--- tb_jtag_tap ---"
+	$(IVERILOG) $(IV_FLAGS) -o $(UNIT_DIR)/tb_jtag_tap.vvp \
+		$(RTL_DIR)/jtag_tap.v $(UNIT_DIR)/tb_jtag_tap.v
+	cd $(UNIT_DIR) && $(VVP) tb_jtag_tap.vvp
+
+unit_tb_bist_ctrl:
+	@echo "--- tb_bist_ctrl ---"
+	$(IVERILOG) $(IV_FLAGS) -o $(UNIT_DIR)/tb_bist_ctrl.vvp \
+		$(RTL_DIR)/bist_ctrl.v $(UNIT_DIR)/tb_bist_ctrl.v
+	cd $(UNIT_DIR) && $(VVP) tb_bist_ctrl.vvp
+
+#=============================================================================
+# Integration Test
+#=============================================================================
+integration:
+	@echo "--- tb_rv32_core (integration smoke test) ---"
+	$(IVERILOG) $(IV_FLAGS) -o $(INT_DIR)/tb_rv32_core.vvp \
+		$(RTL_DEFINES) $(RTL_CORE) $(INT_DIR)/tb_rv32_core.v
+	cd $(INT_DIR) && $(VVP) tb_rv32_core.vvp
+
+#=============================================================================
+# RISC-V Compliance Tests (rv32ui)
+#=============================================================================
+RISCV_TESTS_DIR := riscv-tests
+RISCV_TESTS_ISA := $(RISCV_TESTS_DIR)/isa
+
+# List of rv32ui-p tests (bare-metal, no virtual memory)
+RV32UI_TESTS := add addi and andi auipc beq bge bgeu blt bltu bne \
+                jal jalr lb lbu lh lhu lw lui or ori sb sh sw \
+                sll slli slt slti sltiu sltu sra srai srl srli \
+                sub xor xori
+
+compliance: $(COMP_DIR)/tb_riscv_compliance.vvp riscv_tests_compile
+	@echo "============================================"
+	@echo " Running rv32ui compliance tests"
+	@echo "============================================"
+	@pass=0; fail=0; total=0; \
+	for test in $(RV32UI_TESTS); do \
+		total=$$((total + 1)); \
+		cp $(COMP_DIR)/hex/rv32ui-p-$$test.hex $(COMP_DIR)/firmware.hex 2>/dev/null; \
+		if [ $$? -ne 0 ]; then \
+			echo "SKIP: rv32ui-p-$$test (hex not found)"; \
+			continue; \
+		fi; \
+		result=$$(cd $(COMP_DIR) && $(VVP) tb_riscv_compliance.vvp 2>&1 | grep -E "PASS|FAIL"); \
+		echo "$$result  [rv32ui-p-$$test]"; \
+		if echo "$$result" | grep -q "^PASS"; then pass=$$((pass+1)); \
+		else fail=$$((fail+1)); fi; \
+	done; \
+	echo "============================================"; \
+	echo " Compliance: $$pass/$$total PASSED, $$fail FAILED"; \
+	echo "============================================"
+
+$(COMP_DIR)/tb_riscv_compliance.vvp:
+	$(IVERILOG) $(IV_FLAGS) -o $(COMP_DIR)/tb_riscv_compliance.vvp \
+		$(RTL_DEFINES) $(RTL_CORE) $(COMP_DIR)/tb_riscv_compliance.v
+
+# Clone and compile riscv-tests
+riscv_tests_clone:
+	@if [ ! -d "$(RISCV_TESTS_DIR)" ]; then \
+		echo "Cloning riscv-tests..."; \
+		git clone --recursive https://github.com/riscv-software-src/riscv-tests.git $(RISCV_TESTS_DIR); \
+	fi
+
+riscv_tests_compile: riscv_tests_clone
+	@mkdir -p $(COMP_DIR)/hex
+	@echo "Compiling rv32ui tests..."
+	@for test in $(RV32UI_TESTS); do \
+		src=$(RISCV_TESTS_ISA)/rv32ui/$$test.S; \
+		if [ -f "$$src" ]; then \
+			$(RISCV_GCC) -march=$(RISCV_ARCH) -mabi=$(RISCV_ABI) -nostdlib -nostartfiles \
+				-I$(COMP_DIR)/env \
+				-I$(RISCV_TESTS_ISA)/macros/scalar \
+				-T$(COMP_DIR)/env/link.ld \
+				-o $(COMP_DIR)/hex/rv32ui-p-$$test.elf $$src; \
+			$(RISCV_OBJCOPY) -O verilog --verilog-data-width=4 \
+				$(COMP_DIR)/hex/rv32ui-p-$$test.elf \
+				$(COMP_DIR)/hex/rv32ui-p-$$test.hex; \
+			echo "  Compiled: rv32ui-p-$$test"; \
+		else \
+			echo "  SKIP: $$src not found"; \
+		fi; \
+	done
+
+#=============================================================================
+# Clean
+#=============================================================================
+clean:
+	rm -f $(UNIT_DIR)/*.vvp $(UNIT_DIR)/*.vcd
+	rm -f $(INT_DIR)/*.vvp $(INT_DIR)/*.vcd
+	rm -f $(COMP_DIR)/*.vvp $(COMP_DIR)/*.vcd $(COMP_DIR)/firmware.hex
+	rm -rf $(COMP_DIR)/hex
+	rm -rf $(RISCV_TESTS_DIR)

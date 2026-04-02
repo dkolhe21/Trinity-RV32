@@ -1,0 +1,194 @@
+Assuming PDK is already enabled via custom path.
+# rv32i_top
+mkdir -p ./rv32i_top/runs/26_02_22_13_47 
+rm -rf ./rv32i_top/runs/rv32i_top
+ln -s $(realpath ./rv32i_top/runs/26_02_22_13_47) ./rv32i_top/runs/rv32i_top
+docker run -it -u $(id -u $USER):$(id -g $USER) -v $(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..):$(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..) -v /run/media/durgesh/Code/vlsi_tools/pdks:/run/media/durgesh/Code/vlsi_tools/pdks -v /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel:/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -v /home/durgesh/.ipm:/home/durgesh/.ipm -v /run/media/durgesh/Code/vlsi_tools/OpenLane:/openlane -v /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/mgmt_core_wrapper:/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/mgmt_core_wrapper -e PDK_ROOT=/run/media/durgesh/Code/vlsi_tools/pdks -e PDK=sky130A -e MISMATCHES_OK=1 -e CARAVEL_ROOT=/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -e OPENLANE_RUN_TAG=26_02_22_13_47 -e MCW_ROOT=/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/mgmt_core_wrapper  \
+	efabless/openlane:2023.07.19-1 sh -c "flow.tcl -design $(realpath ./rv32i_top) -save_path $(realpath ..) -save -tag 26_02_22_13_47 -overwrite -ignore_mismatches"
+Unable to find image 'efabless/openlane:2023.07.19-1' locally
+2023.07.19-1: Pulling from efabless/openlane
+352fcbed802f: Pulling fs layer
+ffd26f349b41: Pulling fs layer
+921f112c30b5: Pulling fs layer
+e1cbbee2397e: Pulling fs layer
+ef9d012b4add: Pulling fs layer
+35494e6eaa87: Pulling fs layer
+f5f369f038a1: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+93da3611422f: Pulling fs layer
+9fd20dc6ee4a: Pulling fs layer
+323f9de28156: Pulling fs layer
+683b20fbca27: Pulling fs layer
+6c5b6eb91b7e: Pulling fs layer
+4cf217b5b227: Pulling fs layer
+be7d8cb65024: Pulling fs layer
+b9e056b52fb0: Pulling fs layer
+70e8f6ff478a: Pulling fs layer
+a5745dd661e2: Pulling fs layer
+8c51c188f550: Pulling fs layer
+cc5c8eb7fd73: Pulling fs layer
+3dc8060a4a53: Pulling fs layer
+eaaa873ba1c3: Pulling fs layer
+79949c403a26: Pulling fs layer
+11a468897c64: Pulling fs layer
+f94649ef639a: Pulling fs layer
+3f5fe7bafa8d: Pulling fs layer
+d9413a10e34e: Pulling fs layer
+de66efaec11f: Pulling fs layer
+29d424c3ca7d: Pulling fs layer
+a1764e9008d2: Pulling fs layer
+ffd26f349b41: Download complete
+4f4fb700ef54: Download complete
+323f9de28156: Download complete
+e1cbbee2397e: Download complete
+de66efaec11f: Download complete
+70e8f6ff478a: Download complete
+921f112c30b5: Download complete
+e1cbbee2397e: Pull complete
+70e8f6ff478a: Pull complete
+35494e6eaa87: Download complete
+f94649ef639a: Download complete
+d9413a10e34e: Download complete
+a5745dd661e2: Download complete
+11a468897c64: Download complete
+29d424c3ca7d: Download complete
+79949c403a26: Download complete
+93da3611422f: Download complete
+a1764e9008d2: Download complete
+3f5fe7bafa8d: Download complete
+3dc8060a4a53: Download complete
+f5f369f038a1: Download complete
+ef9d012b4add: Download complete
+b9e056b52fb0: Download complete
+6c5b6eb91b7e: Download complete
+be7d8cb65024: Download complete
+8c51c188f550: Download complete
+683b20fbca27: Download complete
+eaaa873ba1c3: Download complete
+cc5c8eb7fd73: Download complete
+352fcbed802f: Download complete
+9fd20dc6ee4a: Download complete
+ffd26f349b41: Pull complete
+35494e6eaa87: Pull complete
+3f5fe7bafa8d: Pull complete
+352fcbed802f: Pull complete
+921f112c30b5: Pull complete
+be7d8cb65024: Pull complete
+ef9d012b4add: Pull complete
+323f9de28156: Pull complete
+de66efaec11f: Pull complete
+f94649ef639a: Pull complete
+79949c403a26: Pull complete
+93da3611422f: Pull complete
+f5f369f038a1: Pull complete
+3dc8060a4a53: Pull complete
+683b20fbca27: Pull complete
+b9e056b52fb0: Pull complete
+11a468897c64: Pull complete
+6c5b6eb91b7e: Pull complete
+9fd20dc6ee4a: Pull complete
+8c51c188f550: Pull complete
+4cf217b5b227: Download complete
+4cf217b5b227: Pull complete
+eaaa873ba1c3: Pull complete
+4f4fb700ef54: Pull complete
+d9413a10e34e: Pull complete
+a5745dd661e2: Pull complete
+29d424c3ca7d: Pull complete
+a1764e9008d2: Pull complete
+cc5c8eb7fd73: Pull complete
+Digest: sha256:735dcc4c1fe41a44d81b1477f79e480914ada7c201e42716f181e9fa26c5292b
+Status: Downloaded newer image for efabless/openlane:2023.07.19-1
+OpenLane v1.0.2 (30ee1388932eb55a89ad84ee43997bfe3a386421)
+(with mounted scripts from ff5509f65b17bfa4068d5336495ab1718987ff69)
+All rights reserved. (c) 2020-2025 Efabless Corporation and contributors.
+Available under the Apache License, version 2.0. See the LICENSE file for more details.
+
+[36m[INFO]: Using configuration in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/config.json'...[39m
+[36m[INFO]: PDK Root: /run/media/durgesh/Code/vlsi_tools/pdks[39m
+[36m[INFO]: Process Design Kit: sky130A[39m
+[36m[INFO]: Standard Cell Library: sky130_fd_sc_hd[39m
+[36m[INFO]: Optimization Standard Cell Library: sky130_fd_sc_hd[39m
+[36m[INFO]: Run Directory: /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47[39m
+[36m[INFO]: Saving runtime environment...[39m
+[36m[INFO]: Preparing LEF files for the nom corner...[39m
+[36m[INFO]: Preparing LEF files for the min corner...[39m
+[36m[INFO]: Preparing LEF files for the max corner...[39m
+[36m[INFO]: Running linter (Verilator) (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/logs/synthesis/linter.log)...[39m
+[36m[INFO]: 0 errors found by linter[39m
+[33m[WARNING]: 1 warnings found by linter[39m
+[STEP 1]
+[36m[INFO]: Running Synthesis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/logs/synthesis/1-synthesis.log)...[39m
+[STEP 2]
+[36m[INFO]: Running Single-Corner Static Timing Analysis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/logs/synthesis/2-sta.log)...[39m
+[STEP 3]
+[36m[INFO]: Running Initial Floorplanning (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/logs/floorplan/3-initial_fp.log)...[39m
+[36m[INFO]: Floorplanned with width 1488.56 and height 1476.96.[39m
+[STEP 4]
+[36m[INFO]: Running IO Placement (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/logs/floorplan/4-place_io.log)...[39m
+[STEP 5]
+[36m[INFO]: Running Tap/Decap Insertion (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/logs/floorplan/5-tap.log)...[39m
+[36m[INFO]: Power planning with power {vccd1} and ground {vssd1}...[39m
+[STEP 6]
+[36m[INFO]: Generating PDN (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/logs/floorplan/6-pdn.log)...[39m
+[STEP 7]
+[36m[INFO]: Running Global Placement (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/logs/placement/7-global.log)...[39m
+[31m[ERROR]: during executing openroad script /openlane/scripts/openroad/gpl.tcl[39m
+[31m[ERROR]: Log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/logs/placement/7-global.log[39m
+[31m[ERROR]: Last 10 lines:
+[InitialPlace]  Iter: 16 CG residual: 0.00045541 HPWL: 1092496592
+[InitialPlace]  Iter: 17 CG residual: 0.00048051 HPWL: 1092316269
+[InitialPlace]  Iter: 18 CG residual: 0.00046738 HPWL: 1092529249
+[InitialPlace]  Iter: 19 CG residual: 0.00046501 HPWL: 1092322468
+[InitialPlace]  Iter: 20 CG residual: 0.00046428 HPWL: 1092545593
+[ERROR GPL-0302] Use a higher -density or re-floorplan with a larger core area.
+Given target density: 0.55
+Suggested target density: 0.70
+Error: gpl.tcl, 71 GPL-0302
+child process exited abnormally
+[39m
+[31m[ERROR]: Creating issue reproducible...[39m
+[36m[INFO]: Saving runtime environment...[39m
+OpenLane TCL Issue Packager
+
+EFABLESS CORPORATION AND ALL AUTHORS OF THE OPENLANE PROJECT SHALL NOT BE HELD
+LIABLE FOR ANY LEAKS THAT MAY OCCUR TO ANY PROPRIETARY DATA AS A RESULT OF USING
+THIS SCRIPT. THIS SCRIPT IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND.
+
+BY USING THIS SCRIPT, YOU ACKNOWLEDGE THAT YOU FULLY UNDERSTAND THIS DISCLAIMER
+AND ALL IT ENTAILS.
+
+Parsing config file(s)…
+Setting up /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/issue_reproducible…
+Done.
+[36m[INFO]: Reproducible packaged: Please tarball and upload '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/issue_reproducible' if you're going to submit an issue.[39m
+[31m[ERROR]: Step 7 (placement) failed with error:
+-code 1 -level 0 -errorcode NONE -errorinfo {
+    while executing
+"throw_error"
+    (procedure "run_tcl_script" line 219)
+    invoked from within
+"run_tcl_script -tool openroad -no_consume {*}$args"
+    (procedure "run_openroad_script" line 2)
+    invoked from within
+"run_openroad_script $::env(SCRIPTS_DIR)/openroad/gpl.tcl -indexed_log [index_file $::env(placement_logs)/global.log] -save "to=$::env(placement_tmpfil..."
+    (procedure "global_placement_or" line 12)
+    invoked from within
+"global_placement_or"
+    (procedure "run_placement" line 14)
+    invoked from within
+"run_placement"
+    (procedure "run_placement_step" line 8)
+    invoked from within
+"run_placement_step"} -errorline 1[39m
+[36m[INFO]: Saving current set of views in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/results/final'...[39m
+[36m[INFO]: Generating final set of reports...[39m
+[36m[INFO]: Created manufacturability report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/reports/manufacturability.rpt'.[39m
+[36m[INFO]: Created metrics report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_13_47/reports/metrics.csv'.[39m
+[36m[INFO]: Saving runtime environment...[39m
+[31m[ERROR]: Flow failed.[39m
+[36m[INFO]: The failure may have been because of the following warnings:[39m
+[WARNING]: 1 warnings found by linter
+
+make: *** [Makefile:80: rv32i_top] Error 255

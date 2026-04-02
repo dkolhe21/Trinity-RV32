@@ -1,0 +1,112 @@
+Assuming PDK is already enabled via custom path.
+# rv32i_top
+mkdir -p ./rv32i_top/runs/26_02_22_15_48 
+rm -rf ./rv32i_top/runs/rv32i_top
+ln -s $(realpath ./rv32i_top/runs/26_02_22_15_48) ./rv32i_top/runs/rv32i_top
+docker run --rm -u $(id -u $USER):$(id -g $USER) -v $(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..):$(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..) -v /run/media/durgesh/Code/vlsi_tools/pdks:/run/media/durgesh/Code/vlsi_tools/pdks -v /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel:/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -v /home/durgesh/.ipm:/home/durgesh/.ipm -v /run/media/durgesh/Code/vlsi_tools/OpenLane:/openlane -v /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/mgmt_core_wrapper:/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/mgmt_core_wrapper -e PDK_ROOT=/run/media/durgesh/Code/vlsi_tools/pdks -e PDK=sky130A -e MISMATCHES_OK=1 -e CARAVEL_ROOT=/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -e OPENLANE_RUN_TAG=26_02_22_15_48 -e MCW_ROOT=/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/mgmt_core_wrapper  \
+	efabless/openlane:2023.07.19-1 sh -c "flow.tcl -design $(realpath ./rv32i_top) -save_path $(realpath ..) -save -tag 26_02_22_15_48 -overwrite -ignore_mismatches"
+OpenLane v1.0.2 (30ee1388932eb55a89ad84ee43997bfe3a386421)
+(with mounted scripts from ff5509f65b17bfa4068d5336495ab1718987ff69)
+All rights reserved. (c) 2020-2025 Efabless Corporation and contributors.
+Available under the Apache License, version 2.0. See the LICENSE file for more details.
+
+[INFO]: Using configuration in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/config.json'...
+[INFO]: PDK Root: /run/media/durgesh/Code/vlsi_tools/pdks
+[INFO]: Process Design Kit: sky130A
+[INFO]: Standard Cell Library: sky130_fd_sc_hd
+[INFO]: Optimization Standard Cell Library: sky130_fd_sc_hd
+[INFO]: Run Directory: /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48
+[INFO]: Saving runtime environment...
+[INFO]: Preparing LEF files for the nom corner...
+[INFO]: Preparing LEF files for the min corner...
+[INFO]: Preparing LEF files for the max corner...
+[INFO]: Running linter (Verilator) (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/synthesis/linter.log)...
+[INFO]: 0 errors found by linter
+[WARNING]: 1 warnings found by linter
+[STEP 1]
+[INFO]: Running Synthesis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/synthesis/1-synthesis.log)...
+[STEP 2]
+[INFO]: Running Single-Corner Static Timing Analysis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/synthesis/2-sta.log)...
+[STEP 3]
+[INFO]: Running Initial Floorplanning (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/floorplan/3-initial_fp.log)...
+[INFO]: Floorplanned with width 1788.94 and height 1776.16.
+[STEP 4]
+[INFO]: Running IO Placement (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/floorplan/4-place_io.log)...
+[STEP 5]
+[INFO]: Running Tap/Decap Insertion (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/floorplan/5-tap.log)...
+[INFO]: Power planning with power {vccd1} and ground {vssd1}...
+[STEP 6]
+[INFO]: Generating PDN (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/floorplan/6-pdn.log)...
+[STEP 7]
+[INFO]: Running Global Placement (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/placement/7-global.log)...
+[STEP 8]
+[INFO]: Running Single-Corner Static Timing Analysis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/placement/8-gpl_sta.log)...
+[STEP 9]
+[INFO]: Running Placement Resizer Design Optimizations (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/placement/9-resizer.log)...
+[STEP 10]
+[INFO]: Running Detailed Placement (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/placement/10-detailed.log)...
+[STEP 11]
+[INFO]: Running Single-Corner Static Timing Analysis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/placement/11-dpl_sta.log)...
+[STEP 12]
+[INFO]: Running Clock Tree Synthesis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/cts/12-cts.log)...
+[STEP 13]
+[INFO]: Running Single-Corner Static Timing Analysis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/cts/13-cts_sta.log)...
+[STEP 14]
+[INFO]: Running Placement Resizer Timing Optimizations (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/cts/14-resizer.log)...
+[ERROR]: during executing openroad script /openlane/scripts/openroad/resizer_timing.tcl
+[ERROR]: Log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/logs/cts/14-resizer.log
+[ERROR]: Last 10 lines:
+[INFO DPL-0035]  _083177_
+[INFO DPL-0035]  _083176_
+[INFO DPL-0035]  _083176_
+[INFO DPL-0035]  _083152_
+[INFO DPL-0035]  _083152_
+[INFO DPL-0035]  _083152_
+[INFO DPL-0035]  _083152_
+[ERROR DPL-0036] Detailed placement failed.
+Error: resizer_timing.tcl, 58 DPL-0036
+child process exited abnormally
+
+[ERROR]: Creating issue reproducible...
+[INFO]: Saving runtime environment...
+OpenLane TCL Issue Packager
+
+EFABLESS CORPORATION AND ALL AUTHORS OF THE OPENLANE PROJECT SHALL NOT BE HELD
+LIABLE FOR ANY LEAKS THAT MAY OCCUR TO ANY PROPRIETARY DATA AS A RESULT OF USING
+THIS SCRIPT. THIS SCRIPT IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND.
+
+BY USING THIS SCRIPT, YOU ACKNOWLEDGE THAT YOU FULLY UNDERSTAND THIS DISCLAIMER
+AND ALL IT ENTAILS.
+
+Parsing config file(s)…
+Setting up /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/issue_reproducible…
+[WRN] /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/tmp/cts/14-rv32i_top.resized.sdc was not found, might be a product. Skipping
+Done.
+[INFO]: Reproducible packaged: Please tarball and upload '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/issue_reproducible' if you're going to submit an issue.
+[ERROR]: Step 14 (cts) failed with error:
+-code 1 -level 0 -errorcode NONE -errorinfo {
+    while executing
+"throw_error"
+    (procedure "run_tcl_script" line 219)
+    invoked from within
+"run_tcl_script -tool openroad -no_consume {*}$args"
+    (procedure "run_openroad_script" line 2)
+    invoked from within
+"run_openroad_script $::env(SCRIPTS_DIR)/openroad/resizer_timing.tcl -indexed_log [index_file $::env(cts_logs)/resizer.log] -save "to=$::env(cts_tmpfil..."
+    (procedure "run_resizer_timing" line 8)
+    invoked from within
+"run_resizer_timing"
+    (procedure "run_cts_step" line 9)
+    invoked from within
+"run_cts_step"} -errorline 1
+[INFO]: Saving current set of views in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/results/final'...
+[INFO]: Generating final set of reports...
+[INFO]: Created manufacturability report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/reports/manufacturability.rpt'.
+[INFO]: Created metrics report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_15_48/reports/metrics.csv'.
+[INFO]: Saving runtime environment...
+[ERROR]: Flow failed.
+[INFO]: The failure may have been because of the following warnings:
+[WARNING]: 1 warnings found by linter
+
+make: *** [Makefile:80: rv32i_top] Error 255

@@ -1,0 +1,85 @@
+Makefile:54: warning: undefined variable 'MCW_ROOT'
+Assuming PDK is already enabled via custom path.
+# rv32i_top
+mkdir -p ./rv32i_top/runs/26_02_23_11_09 
+rm -rf ./rv32i_top/runs/rv32i_top
+ln -s $(realpath ./rv32i_top/runs/26_02_23_11_09) ./rv32i_top/runs/rv32i_top
+docker run -it -u $(id -u $USER):$(id -g $USER) -v $(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..):$(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..) -v /run/media/durgesh/Code/vlsi_tools/pdks:/run/media/durgesh/Code/vlsi_tools/pdks -v /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel:/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -v /home/durgesh/.ipm:/home/durgesh/.ipm -v /run/media/durgesh/Code/vlsi_tools/OpenLane:/openlane -e PDK_ROOT=/run/media/durgesh/Code/vlsi_tools/pdks -e PDK=sky130A -e MISMATCHES_OK=1 -e CARAVEL_ROOT=/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -e OPENLANE_RUN_TAG=26_02_23_11_09  \
+	efabless/openlane:2023.07.19-1 sh -c "flow.tcl -design $(realpath ./rv32i_top) -save_path $(realpath ..) -save -tag 26_02_23_11_09 -overwrite -ignore_mismatches"
+OpenLane v1.0.2 (30ee1388932eb55a89ad84ee43997bfe3a386421)
+(with mounted scripts from ff5509f65b17bfa4068d5336495ab1718987ff69)
+All rights reserved. (c) 2020-2025 Efabless Corporation and contributors.
+Available under the Apache License, version 2.0. See the LICENSE file for more details.
+
+[36m[INFO]: Using configuration in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/config.json'...[39m
+[36m[INFO]: PDK Root: /run/media/durgesh/Code/vlsi_tools/pdks[39m
+[36m[INFO]: Process Design Kit: sky130A[39m
+[36m[INFO]: Standard Cell Library: sky130_fd_sc_hd[39m
+[36m[INFO]: Optimization Standard Cell Library: sky130_fd_sc_hd[39m
+[36m[INFO]: Run Directory: /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_11_09[39m
+[36m[INFO]: Saving runtime environment...[39m
+[36m[INFO]: Preparing LEF files for the nom corner...[39m
+[36m[INFO]: Preparing LEF files for the min corner...[39m
+[36m[INFO]: Preparing LEF files for the max corner...[39m
+[36m[INFO]: Running linter (Verilator) (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_11_09/logs/synthesis/linter.log)...[39m
+[36m[INFO]: 0 errors found by linter[39m
+[33m[WARNING]: 1 warnings found by linter[39m
+[STEP 1]
+[36m[INFO]: Running Synthesis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_11_09/logs/synthesis/1-synthesis.log)...[39m
+^C[31m[ERROR]: during executing yosys script /openlane/scripts/yosys/synth.tcl[39m
+[31m[ERROR]: Log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_11_09/logs/synthesis/1-synthesis.log[39m
+[31m[ERROR]: Last 10 lines:
+Using template $paramod$33afdd83bf3811dac2de7a968d39eea5718691bc\_90_pmux for cells of type $pmux.
+Using template $paramod$20d3ee62d72123142eb855d7ddafd835e31ba009\_90_pmux for cells of type $pmux.
+Using template $paramod$constmap:4621fcf06a436d1e2a4080e2ed9866a7d07a6e07$paramod$e765c459d3029c22a22a27989e94858fd9ebfa9c\_90_shift_ops_shr_shl_sshl_sshr for cells of type $sshr.
+Using template $paramod$constmap:4621fcf06a436d1e2a4080e2ed9866a7d07a6e07$paramod$feecc7a0dbd012970970f2858f15e786e251f677\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shr.
+Using template $paramod$constmap:4621fcf06a436d1e2a4080e2ed9866a7d07a6e07$paramod$335cfd09f1afa8139c4aafcbbe5f361887b79c5e\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shl.
+Using template $paramod$104d3d1e82b09b030a785dad8a5e608a6d4401f7\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $dff.
+Using template $paramod$effaf36432c334223db2ff0ecd7fefb10188d957\_90_pmux for cells of type $pmux.
+child killed: interrupt
+child killed: interrupt
+[39m
+[31m[ERROR]: Creating issue reproducible...[39m
+[36m[INFO]: Saving runtime environment...[39m
+sleep 600 && tail -n 25 /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/rv32i_top/openlane.log
+OpenLane TCL Issue Packager
+
+EFABLESS CORPORATION AND ALL AUTHORS OF THE OPENLANE PROJECT SHALL NOT BE HELD
+LIABLE FOR ANY LEAKS THAT MAY OCCUR TO ANY PROPRIETARY DATA AS A RESULT OF USING
+THIS SCRIPT. THIS SCRIPT IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND.
+
+BY USING THIS SCRIPT, YOU ACKNOWLEDGE THAT YOU FULLY UNDERSTAND THIS DISCLAIMER
+AND ALL IT ENTAILS.
+
+Parsing config file(s)…
+Setting up /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_11_09/issue_reproducible…
+Done.
+[36m[INFO]: Reproducible packaged: Please tarball and upload '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_11_09/issue_reproducible' if you're going to submit an issue.[39m
+[31m[ERROR]: Step 1 (synthesis) failed with error:
+-code 1 -level 0 -errorcode NONE -errorinfo {
+    while executing
+"throw_error"
+    (procedure "run_tcl_script" line 219)
+    invoked from within
+"run_tcl_script -tool yosys -no_consume {*}$args"
+    (procedure "run_yosys_script" line 2)
+    invoked from within
+"run_yosys_script $::env(SYNTH_SCRIPT) -indexed_log $arg_values(-indexed_log)"
+    (procedure "run_yosys" line 44)
+    invoked from within
+"run_yosys -indexed_log $log"
+    (procedure "run_synthesis" line 13)
+    invoked from within
+"run_synthesis"} -errorline 1[39m
+[36m[INFO]: Saving current set of views in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_11_09/results/final'...[39m
+[36m[INFO]: Generating final set of reports...[39m
+[36m[INFO]: Created manufacturability report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_11_09/reports/manufacturability.rpt'.[39m
+[36m[INFO]: Created metrics report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_23_11_09/reports/metrics.csv'.[39m
+[36m[INFO]: Saving runtime environment...[39m
+[31m[ERROR]: Flow failed.[39m
+[36m[INFO]: The failure may have been because of the following warnings:[39m
+[WARNING]: 1 warnings found by linter
+
+make: *** [Makefile:80: rv32i_top] Error 255

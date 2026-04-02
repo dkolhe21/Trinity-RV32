@@ -1,0 +1,100 @@
+Assuming PDK is already enabled via custom path.
+# rv32i_top
+mkdir -p ./rv32i_top/runs/26_02_22_20_20 
+rm -rf ./rv32i_top/runs/rv32i_top
+ln -s $(realpath ./rv32i_top/runs/26_02_22_20_20) ./rv32i_top/runs/rv32i_top
+docker run --rm -u $(id -u $USER):$(id -g $USER) -v $(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..):$(realpath /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/..) -v /run/media/durgesh/Code/vlsi_tools/pdks:/run/media/durgesh/Code/vlsi_tools/pdks -v /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel:/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -v /home/durgesh/.ipm:/home/durgesh/.ipm -v /run/media/durgesh/Code/vlsi_tools/OpenLane:/openlane -v /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/mgmt_core_wrapper:/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/mgmt_core_wrapper -e PDK_ROOT=/run/media/durgesh/Code/vlsi_tools/pdks -e PDK=sky130A -e MISMATCHES_OK=1 -e CARAVEL_ROOT=/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/caravel -e OPENLANE_RUN_TAG=26_02_22_20_20 -e MCW_ROOT=/run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/mgmt_core_wrapper  \
+	efabless/openlane:2023.07.19-1 sh -c "flow.tcl -design $(realpath ./rv32i_top) -save_path $(realpath ..) -save -tag 26_02_22_20_20 -overwrite -ignore_mismatches"
+OpenLane v1.0.2 (30ee1388932eb55a89ad84ee43997bfe3a386421)
+(with mounted scripts from ff5509f65b17bfa4068d5336495ab1718987ff69)
+All rights reserved. (c) 2020-2025 Efabless Corporation and contributors.
+Available under the Apache License, version 2.0. See the LICENSE file for more details.
+
+[INFO]: Using configuration in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/config.json'...
+[INFO]: PDK Root: /run/media/durgesh/Code/vlsi_tools/pdks
+[INFO]: Process Design Kit: sky130A
+[INFO]: Standard Cell Library: sky130_fd_sc_hd
+[INFO]: Optimization Standard Cell Library: sky130_fd_sc_hd
+[INFO]: Run Directory: /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20
+[INFO]: Saving runtime environment...
+[INFO]: Preparing LEF files for the nom corner...
+[INFO]: Preparing LEF files for the min corner...
+[INFO]: Preparing LEF files for the max corner...
+[INFO]: Running linter (Verilator) (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/logs/synthesis/linter.log)...
+[INFO]: 0 errors found by linter
+[WARNING]: 1 warnings found by linter
+[STEP 1]
+[INFO]: Running Synthesis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/logs/synthesis/1-synthesis.log)...
+[STEP 2]
+[INFO]: Running Single-Corner Static Timing Analysis (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/logs/synthesis/2-sta.log)...
+[STEP 3]
+[INFO]: Running Initial Floorplanning (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/logs/floorplan/3-initial_fp.log)...
+[INFO]: Floorplanned with width 2166.14 and height 2165.12.
+[STEP 4]
+[INFO]: Running IO Placement (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/logs/floorplan/4-place_io.log)...
+[STEP 5]
+[INFO]: Running Tap/Decap Insertion (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/logs/floorplan/5-tap.log)...
+[INFO]: Power planning with power {vccd1} and ground {vssd1}...
+[STEP 6]
+[INFO]: Generating PDN (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/logs/floorplan/6-pdn.log)...
+[STEP 7]
+[INFO]: Running Global Placement (log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/logs/placement/7-global.log)...
+[ERROR]: during executing openroad script /openlane/scripts/openroad/gpl.tcl
+[ERROR]: Log: ../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/logs/placement/7-global.log
+[ERROR]: Last 10 lines:
+[InitialPlace]  Iter: 16 CG residual: 0.00055114 HPWL: 1414490599
+[InitialPlace]  Iter: 17 CG residual: 0.00057577 HPWL: 1412125596
+[InitialPlace]  Iter: 18 CG residual: 0.00062693 HPWL: 1414184135
+[InitialPlace]  Iter: 19 CG residual: 0.00061251 HPWL: 1412222368
+[InitialPlace]  Iter: 20 CG residual: 0.00056505 HPWL: 1414327912
+[ERROR GPL-0302] Use a higher -density or re-floorplan with a larger core area.
+Given target density: 0.30
+Suggested target density: 0.36
+Error: gpl.tcl, 71 GPL-0302
+child process exited abnormally
+
+[ERROR]: Creating issue reproducible...
+[INFO]: Saving runtime environment...
+OpenLane TCL Issue Packager
+
+EFABLESS CORPORATION AND ALL AUTHORS OF THE OPENLANE PROJECT SHALL NOT BE HELD
+LIABLE FOR ANY LEAKS THAT MAY OCCUR TO ANY PROPRIETARY DATA AS A RESULT OF USING
+THIS SCRIPT. THIS SCRIPT IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND.
+
+BY USING THIS SCRIPT, YOU ACKNOWLEDGE THAT YOU FULLY UNDERSTAND THIS DISCLAIMER
+AND ALL IT ENTAILS.
+
+Parsing config file(s)…
+Setting up /run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/issue_reproducible…
+Done.
+[INFO]: Reproducible packaged: Please tarball and upload '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/issue_reproducible' if you're going to submit an issue.
+[ERROR]: Step 7 (placement) failed with error:
+-code 1 -level 0 -errorcode NONE -errorinfo {
+    while executing
+"throw_error"
+    (procedure "run_tcl_script" line 219)
+    invoked from within
+"run_tcl_script -tool openroad -no_consume {*}$args"
+    (procedure "run_openroad_script" line 2)
+    invoked from within
+"run_openroad_script $::env(SCRIPTS_DIR)/openroad/gpl.tcl -indexed_log [index_file $::env(placement_logs)/global.log] -save "to=$::env(placement_tmpfil..."
+    (procedure "global_placement_or" line 12)
+    invoked from within
+"global_placement_or"
+    (procedure "run_placement" line 14)
+    invoked from within
+"run_placement"
+    (procedure "run_placement_step" line 8)
+    invoked from within
+"run_placement_step"} -errorline 1
+[INFO]: Saving current set of views in '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/results/final'...
+[INFO]: Generating final set of reports...
+[INFO]: Created manufacturability report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/reports/manufacturability.rpt'.
+[INFO]: Created metrics report at '../run/media/durgesh/Code/visualstudio/RISC-V/RISC_CPU/openlane/rv32i_top/runs/26_02_22_20_20/reports/metrics.csv'.
+[INFO]: Saving runtime environment...
+[ERROR]: Flow failed.
+[INFO]: The failure may have been because of the following warnings:
+[WARNING]: 1 warnings found by linter
+
+make: *** [Makefile:80: rv32i_top] Error 255
