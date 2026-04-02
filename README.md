@@ -282,16 +282,6 @@ Trinity-RV32 is packaged as a **Caravel `user_project_wrapper`** for the Efables
 
 ---
 
-## 📝 References
-
-1. A. Waterman & K. Asanović — *The RISC-V Instruction Set Manual, Volume I: Unprivileged ISA*, RISC-V Foundation, 2019
-2. T. Edwards et al. — *Caravel Harness Documentation*, Efabless Corporation, 2021
-3. SkyWater Technology — *SKY130 Open Source PDK Documentation*, 2020
-4. M. Shalan & T. Edwards — *Building OpenLANE: A 130nm OpenROAD-based Digital SoC Design Platform*, WOSET, 2020
-5. IEEE Standard 1149.1-2013 — *Standard for Test Access Port and Boundary-Scan Architecture*
-6. OpenRAM — *An Open-Source Memory Compiler*, UC Santa Cruz, 2016
-
----
 
 <div align="center">
 

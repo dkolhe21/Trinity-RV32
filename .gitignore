@@ -16,6 +16,7 @@
 # Private/Internal files
 docs/walkthrough.md
 docs/interview_qa.md
+docs/interview_prep.md
 docs/errors_and_resolutions.md
 *.md.backup
 ../walkthrough.md
